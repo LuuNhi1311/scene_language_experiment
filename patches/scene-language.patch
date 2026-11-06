@@ -1,0 +1,103 @@
+diff --git a/engine/utils/argparse_utils.py b/engine/utils/argparse_utils.py
+index 5efa7a5..19bdabb 100644
+--- a/engine/utils/argparse_utils.py
++++ b/engine/utils/argparse_utils.py
+@@ -15,7 +15,7 @@ def setup_save_dir(save_dir: str, log_unique: bool) -> Path:
+     save_dir = Path(save_dir)
+     if log_unique:
+         timestamp = time.strftime('%Y%m%d-%H%M%S', time.localtime(time.time()))
+-        save_dir = save_dir.with_stem(f'{Path(save_dir).stem}_{timestamp}_{uuid.uuid4()}')
++        save_dir = save_dir.with_stem(f'{Path(save_dir).stem}_{timestamp}_{uuid.uuid4().hex[:8]}')  # uuid rut gon: tranh WinError 206
+         save_dir.mkdir(parents=True)
+     else:
+         save_dir.mkdir(parents=True, exist_ok=True)
+@@ -23,7 +23,7 @@ def setup_save_dir(save_dir: str, log_unique: bool) -> Path:
+     return save_dir
+ 
+ 
+-def modify_string_for_file(orig_string, max_length=100, append_uuid=True):
++def modify_string_for_file(orig_string, max_length=48, append_uuid=True):  # 100 -> 48: tranh WinError 206
+     """
+     Truncates the string to a maximum length, appends a UUID derived from the string,
+     and sanitizes it to be safe for use as a file or folder name.
+@@ -36,7 +36,7 @@ def modify_string_for_file(orig_string, max_length=100, append_uuid=True):
+     str: A modified string safe for use as a file or folder name.
+     """
+     # Generate a UUID based on the original string
+-    string_uuid = '' if not append_uuid else str(uuid.uuid5(uuid.NAMESPACE_DNS, orig_string))
++    string_uuid = '' if not append_uuid else uuid.uuid5(uuid.NAMESPACE_DNS, orig_string).hex[:8]  # uuid rut gon
+ 
+     # Sanitize the string to be safe for file/folder names, removing problematic characters
+     ascii_string = unidecode(orig_string).replace(" ", "_")
+diff --git a/engine/utils/claude_client.py b/engine/utils/claude_client.py
+index 7094e61..f40ec0a 100644
+--- a/engine/utils/claude_client.py
++++ b/engine/utils/claude_client.py
+@@ -117,7 +117,7 @@ class ClaudeClient:
+         self.cache[cache_key] = results
+         with open(self.cache_file + ".tmp", "w") as f:
+             json.dump(self.cache, f)
+-        os.rename(self.cache_file + ".tmp", self.cache_file)
++        os.replace(self.cache_file + ".tmp", self.cache_file)  # os.rename khong ghi de tren Windows
+         os.remove(self.cache_file + ".lock")
+ 
+ 
+diff --git a/engine/utils/execute_utils.py b/engine/utils/execute_utils.py
+index 55bc188..196d2e4 100644
+--- a/engine/utils/execute_utils.py
++++ b/engine/utils/execute_utils.py
+@@ -2,6 +2,30 @@ import subprocess
+ import time
+ import sys
+ from pathlib import Path
++import os
++import re
++
++
++def _win_prepare(command: str):
++    """Windows: 'VAR=val ... python x.py' khong chay duoc voi cmd.exe.
++    Tach cac VAR=val dau lenh vao env, thay 'python' bang sys.executable,
++    va doi ':$PYTHONPATH' sang dau phan cach cua Windows."""
++    if os.name != 'nt':
++        return command, None
++    tokens = command.split()
++    env = dict(os.environ)
++    i = 0
++    while i < len(tokens) and re.match(r'^[A-Za-z_][A-Za-z0-9_]*=', tokens[i]):
++        k, v = tokens[i].split('=', 1)
++        v = v.replace(':$PYTHONPATH', '').replace('$PYTHONPATH', '')
++        if k == 'PYTHONPATH' and os.environ.get('PYTHONPATH'):
++            v = v + os.pathsep + os.environ['PYTHONPATH']
++        env[k] = v
++        i += 1
++    rest = tokens[i:]
++    if rest and rest[0] == 'python':
++        rest[0] = sys.executable
++    return subprocess.list2cmdline(rest), env
+ 
+ 
+ def execute_command(command: str, save_dir: str, timeout=None, dry_run: bool = False,
+@@ -51,7 +75,8 @@ def execute_command(command: str, save_dir: str, timeout=None, dry_run: bool = F
+     # print(f"[INFO] {returncode=}")
+     # return returncode  # 0 is good
+ 
+-    result = subprocess.run(command, shell=True, text=True, capture_output=True, timeout=timeout, cwd=cwd)
++    command, env = _win_prepare(command)
++    result = subprocess.run(command, shell=True, text=True, capture_output=True, timeout=timeout, cwd=cwd, env=env)
+ 
+     with open(save_dir / "execute_out.txt", 'w') as f:
+         f.write(result.stdout)
+diff --git a/scripts/prompts/math_utils.py b/scripts/prompts/math_utils.py
+index e0dd132..d28bf64 100644
+--- a/scripts/prompts/math_utils.py
++++ b/scripts/prompts/math_utils.py
+@@ -29,6 +29,9 @@ def rotation_matrix(angle: float, direction: P, point: P) -> T:
+         point (P) : the point about which the rotation is performed
+     """
+     # positive for counter-clockwise rotation if looking along the direction vector towards the origin
++    # numpy 2: transforms3d goi np.array(..., copy=False) nen list/tuple se loi; ep sang ndarray truoc
++    direction = np.asarray(direction, dtype=np.float64)
++    point = None if point is None else np.asarray(point, dtype=np.float64)
+     return _rotation_matrix(angle, direction=direction, point=point)
+ 
+ 

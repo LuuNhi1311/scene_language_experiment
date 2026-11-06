@@ -1,0 +1,25 @@
+scene,sample,correct,count_expression,note
+coke,0,1,so hoc tren bien,"num_rows=5, num_cans=num_rows-row -> 5+4+3+2+1=15"
+coke,1,1,danh sach Python,"row_counts=[5,4,3,2,1], loop(5,make_row)"
+coke,2,1,danh sach Python,"rows=[5,4,3,2,1], loop(5,make_row)"
+coke,3,1,danh sach Python,"rows=[5,4,3,2,1], concat over range(5)"
+shelf,0,1,bien truyen vao loop,"num_layers=8, loop(num_layers+1) -> 9 tam van cho 8 khoang"
+shelf,1,1,bien truyen vao loop,"num_layers=8, loop(num_layers+1) -> 9 tam van cho 8 khoang"
+shelf,2,1,bien truyen vao loop,"num_layers=8, loop(num_layers+1) -> 9 tam van cho 8 khoang"
+shelf,3,1,bien truyen vao loop,"num_layers=8, loop(num_layers+1) -> 9 tam van cho 8 khoang"
+moai,0,1,bien truyen vao loop,"num_statues=7, loop(num_statues,place_moai)"
+moai,1,1,bien truyen vao loop,"num_statues=7, loop(num_statues,place_moai)"
+moai,2,1,bien truyen vao loop,"num_statues=7, loop(num_statues,place_moai)"
+moai,3,1,bien truyen vao loop,"num_statues=7, loop(num_statues,place_moai)"
+chessboard,0,1,hang so trong loop,loop(64) o + loop(8) x4 -> 32 quan
+chessboard,1,1,hang so trong loop,loop(64) o + loop(8) x4 -> 32 quan
+chessboard,2,1,vong for Python,loop(64) o + for col in range(8) x4 -> 32 quan
+chessboard,3,1,hang so trong loop,loop(64) o + loop(8) pawns + back_row -> 32 quan; khong sinh anh
+Sudoku,0,1,hang so trong loop,loop(81) o + loop(10) duong ke
+Sudoku,1,1,vong for Python,range(9) x range(9) = 81 o
+Sudoku,2,1,vong for Python,range(9) x range(9) = 81 o
+Sudoku,3,1,vong for Python,range(9) x range(9) = 81 o
+Ferris,0,1,bien truyen vao loop,"num_cabins=12, loop(num_cabins); 36 la so doan vanh"
+Ferris,1,1,bien truyen vao loop,"num_cabins=12, loop(num_cabins); 36 la so doan vanh"
+Ferris,2,1,bien truyen vao loop,"num_cabins=12, loop(num_cabins); 36 la so doan vanh"
+Ferris,3,1,bien truyen vao loop,"num_cabins=12, loop(num_cabins); 36 la so doan vanh"

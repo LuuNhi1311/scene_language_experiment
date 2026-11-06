@@ -1,0 +1,25 @@
+scene,sample,expected_count,program_generated,has_error,num_renders,program_lines,numbers_seen,count_correct,count_expression,sample_path
+coke,0,15,1,0,2,71,5,1,so hoc tren bien,scripts/outputs/run_20261104-144211_074d9b71/15_coke_cans_stacking_in_a_pyramid_f6ef8164/0
+coke,1,15,1,0,2,71,5,1,danh sach Python,scripts/outputs/run_20261104-144211_074d9b71/15_coke_cans_stacking_in_a_pyramid_f6ef8164/1
+coke,2,15,1,0,2,70,5,1,danh sach Python,scripts/outputs/run_20261104-144211_074d9b71/15_coke_cans_stacking_in_a_pyramid_f6ef8164/2
+coke,3,15,1,0,2,82,5,1,danh sach Python,scripts/outputs/run_20261104-144211_074d9b71/15_coke_cans_stacking_in_a_pyramid_f6ef8164/3
+shelf,0,8,1,0,2,67,8,1,bien truyen vao loop,scripts/outputs/run_20261104-144228_d6a62da3/a_shelf_with_8_layers_cea40838/0
+shelf,1,8,1,0,2,67,8,1,bien truyen vao loop,scripts/outputs/run_20261104-144228_d6a62da3/a_shelf_with_8_layers_cea40838/1
+shelf,2,8,1,0,2,69,8,1,bien truyen vao loop,scripts/outputs/run_20261104-144228_d6a62da3/a_shelf_with_8_layers_cea40838/2
+shelf,3,8,1,0,2,58,8,1,bien truyen vao loop,scripts/outputs/run_20261104-144228_d6a62da3/a_shelf_with_8_layers_cea40838/3
+moai,0,7,1,0,2,146,7,1,bien truyen vao loop,"scripts/outputs/run_20261104-144321_a80893b6/seven_moai_statues_standing_in_a_row,_a_6f7e28b0/0"
+moai,1,7,1,0,2,134,7,1,bien truyen vao loop,"scripts/outputs/run_20261104-144321_a80893b6/seven_moai_statues_standing_in_a_row,_a_6f7e28b0/1"
+moai,2,7,1,0,2,131,7,1,bien truyen vao loop,"scripts/outputs/run_20261104-144321_a80893b6/seven_moai_statues_standing_in_a_row,_a_6f7e28b0/2"
+moai,3,7,1,0,2,143,7,1,bien truyen vao loop,"scripts/outputs/run_20261104-144321_a80893b6/seven_moai_statues_standing_in_a_row,_a_6f7e28b0/3"
+chessboard,0,32,1,0,2,228,64;4;5;8;8;8;8,1,hang so trong loop,scripts/outputs/run_20261104-144508_d0d0e4db/a_chessboard_with_a_full_set_of_chess_p_f44954b0/0
+chessboard,1,32,1,0,2,232,64;5;8;8;8;8,1,hang so trong loop,scripts/outputs/run_20261104-144508_d0d0e4db/a_chessboard_with_a_full_set_of_chess_p_f44954b0/1
+chessboard,2,32,1,0,2,174,64;8;8,1,vong for Python,scripts/outputs/run_20261104-144508_d0d0e4db/a_chessboard_with_a_full_set_of_chess_p_f44954b0/2
+chessboard,3,32,1,0,0,199,64;5;8;8,1,hang so trong loop,scripts/outputs/run_20261104-144508_d0d0e4db/a_chessboard_with_a_full_set_of_chess_p_f44954b0/3
+Sudoku,0,81,1,0,2,189,81;10;10,1,hang so trong loop,scripts/outputs/run_20261104-144745_48f8df73/A_9x9_Sudoku_board_partially_filled_wit_8eccefdc/0
+Sudoku,1,81,1,0,2,225,10;10;9;9,1,vong for Python,scripts/outputs/run_20261104-144745_48f8df73/A_9x9_Sudoku_board_partially_filled_wit_8eccefdc/1
+Sudoku,2,81,1,0,2,232,9;9;6;6;4;4;9,1,vong for Python,scripts/outputs/run_20261104-144745_48f8df73/A_9x9_Sudoku_board_partially_filled_wit_8eccefdc/2
+Sudoku,3,81,1,0,2,179,9;9;10;10;9;9,1,vong for Python,scripts/outputs/run_20261104-144745_48f8df73/A_9x9_Sudoku_board_partially_filled_wit_8eccefdc/3
+Ferris,0,12,1,0,2,223,36;12;12,1,bien truyen vao loop,scripts/outputs/run_20261104-145020_03fd80ec/a_Ferris_wheel_with_12_cabins_585b82df/0
+Ferris,1,12,1,0,2,218,36;12,1,bien truyen vao loop,scripts/outputs/run_20261104-145020_03fd80ec/a_Ferris_wheel_with_12_cabins_585b82df/1
+Ferris,2,12,1,0,2,176,36;12;12,1,bien truyen vao loop,scripts/outputs/run_20261104-145020_03fd80ec/a_Ferris_wheel_with_12_cabins_585b82df/2
+Ferris,3,12,1,0,2,223,36;12;12,1,bien truyen vao loop,scripts/outputs/run_20261104-145020_03fd80ec/a_Ferris_wheel_with_12_cabins_585b82df/3

@@ -1,0 +1,5 @@
+# Ghim vì bản mới nhất không còn chạy được với mã tác giả
+mitsuba<3.6        # >=3.6 bỏ module mi.xml
+anthropic<1        # >=1.0 bỏ tham số temperature khỏi messages.stream()
+opencv-python      # repo tác giả import cv2 nhưng không khai báo
+wandb>=0.16
